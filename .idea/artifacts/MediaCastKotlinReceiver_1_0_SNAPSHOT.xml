@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MediaCastKotlinReceiver-1.0-SNAPSHOT">
+    <output-path>C:\Users\Mike\IdeaProjects\MediaCastKotlinReceiver\build\libs</output-path>
+    <root id="archive" name="MediaCastKotlinReceiver-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="org.example.MediaCastKotlinReceiver.main" />
+    </root>
+  </artifact>
+</component>
