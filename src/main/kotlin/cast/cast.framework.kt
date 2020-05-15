@@ -1,28 +1,34 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS",
+    "EXTERNAL_DELEGATION"
+)
+@file:JsQualifier("cast.framework")
 
 package cast
 
 import org.khronos.webgl.Uint8Array
+import org.w3c.dom.HTMLMediaElement
 import kotlin.js.Promise
 
-typealias HTMLMediaElement = Any
-
-object LoggerLevel {
-    const val DEBUG = 0
-    const val VERBOSE = 500
-    const val INFO = 800
-    const val WARNING = 900
-    const val ERROR = 1000
-    const val NONE = 1500
+external enum class LoggerLevel {
+    DEBUG /* = 0 */,
+    VERBOSE /* = 500 */,
+    INFO /* = 800 */,
+    WARNING /* = 900 */,
+    ERROR /* = 1000 */,
+    NONE /* = 1500 */
 }
 
-object ContentProtection {
-    const val NONE = "none"
-    const val CLEARKEY = "clearkey"
-    const val PLAYREADY = "playready"
-    const val WIDEVINE = "widevine"
-    const val AES_128 = "aes_128"
-    const val AES_128_CKP = "aes_128_ckp"
+external enum class ContentProtection {
+    NONE /* = 'none' */,
+    CLEARKEY /* = 'clearkey' */,
+    PLAYREADY /* = 'playready' */,
+    WIDEVINE /* = 'widevine' */,
+    AES_128 /* = 'aes_128' */,
+    AES_128_CKP /* = 'aes_128_ckp' */;
 }
 
 external open class TextTracksManager(params: Any = definedExternally) {
@@ -144,107 +150,125 @@ external open class PlayerManager(params: Any = definedExternally) {
     open fun removeEventListener(eventType: PlayerEventType, eventListener: EventHandler)
     open fun removeEventListener(eventType: Array<PlayerEventType>, eventListener: EventHandler)
     open fun seek(seekTime: Number)
-    open fun sendError(senderId: String, requestId: Number, type: ErrorType, reason: ErrorReason = definedExternally, customData: Any = definedExternally)
+    open fun sendError(
+        senderId: String,
+        requestId: Number,
+        type: ErrorType,
+        reason: ErrorReason = definedExternally,
+        customData: Any = definedExternally
+    )
+
     open fun sendLocalMediaRequest(request: RequestData)
-    open fun sendStatus(senderId: String, requestId: Number, includeMedia: Boolean = definedExternally, customData: Any = definedExternally, includeQueueItems: Boolean = definedExternally)
+    open fun sendStatus(
+        senderId: String,
+        requestId: Number,
+        includeMedia: Boolean = definedExternally,
+        customData: Any = definedExternally,
+        includeQueueItems: Boolean = definedExternally
+    )
+
     open fun setIdleReason(idleReason: IdleReason)
     open fun setMediaElement(mediaElement: HTMLMediaElement)
     open fun setMediaInformation(mediaInformation: MediaInformation, opt_broadcast: Boolean = definedExternally)
-    open fun setMediaPlaybackInfoHandler(handler: (loadRequestData: LoadRequestData, playbackConfig: PlaybackConfig) -> Unit)
+    open fun setMediaPlaybackInfoHandler(handler: (loadRequestData: LoadRequestData, playbackConfig: PlaybackConfig) -> PlaybackConfig)
     open fun setMediaUrlResolver(resolver: (loadRequestData: LoadRequestData) -> Unit)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> CloudMediaStatus)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> Promise<CloudMediaStatus>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> CustomCommandRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> Promise<CustomCommandRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> DisplayStatusRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> Promise<DisplayStatusRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> EditAudioTracksRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> Promise<EditAudioTracksRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> EditTracksInfoRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> Promise<EditTracksInfoRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> FocusStateRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> Promise<FocusStateRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> GetStatusRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> Promise<GetStatusRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> LoadRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> Promise<LoadRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> LoadByEntityRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> Promise<LoadByEntityRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> MediaStatus)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> Promise<MediaStatus>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> PrecacheRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> Promise<PrecacheRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> PreloadRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> Promise<PreloadRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> QueueChange)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> Promise<QueueChange>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> GetItemsInfoRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> Promise<GetItemsInfoRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> FetchItemsRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> Promise<FetchItemsRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> QueueInsertRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> Promise<QueueInsertRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> ItemsInfo)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> Promise<ItemsInfo>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> QueueIds)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> Promise<QueueIds>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> QueueLoadRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> Promise<QueueLoadRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> QueueRemoveRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> Promise<QueueRemoveRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> QueueReorderRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> Promise<QueueReorderRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> QueueUpdateRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> Promise<QueueUpdateRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> ResumeSessionRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> Promise<ResumeSessionRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> SeekRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> Promise<SeekRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> StoreSessionResponseData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> Promise<StoreSessionResponseData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> SetCredentialsRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> Promise<SetCredentialsRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> SetPlaybackRateRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> Promise<SetPlaybackRateRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> VolumeRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> Promise<VolumeRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> StoreSessionRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> Promise<StoreSessionRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> UserActionRequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> Promise<UserActionRequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> Nothing?)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: RequestData) -> RequestData)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: RequestData) -> Promise<RequestData>)?)
-    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: RequestData) -> Nothing?)?)
+
+    //    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> CloudMediaStatus)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> Promise<CloudMediaStatus>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CloudMediaStatus) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> CustomCommandRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> Promise<CustomCommandRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: CustomCommandRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> DisplayStatusRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> Promise<DisplayStatusRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: DisplayStatusRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> EditAudioTracksRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> Promise<EditAudioTracksRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditAudioTracksRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> EditTracksInfoRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> Promise<EditTracksInfoRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: EditTracksInfoRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> FocusStateRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> Promise<FocusStateRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FocusStateRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> GetStatusRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> Promise<GetStatusRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetStatusRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> LoadRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> Promise<LoadRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> LoadByEntityRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> Promise<LoadByEntityRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: LoadByEntityRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> MediaStatus)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> Promise<MediaStatus>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: MediaStatus) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> PrecacheRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> Promise<PrecacheRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PrecacheRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> PreloadRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> Promise<PreloadRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: PreloadRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> QueueChange)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> Promise<QueueChange>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueChange) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> GetItemsInfoRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> Promise<GetItemsInfoRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: GetItemsInfoRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> FetchItemsRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> Promise<FetchItemsRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: FetchItemsRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> QueueInsertRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> Promise<QueueInsertRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueInsertRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> ItemsInfo)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> Promise<ItemsInfo>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ItemsInfo) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> QueueIds)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> Promise<QueueIds>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueIds) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> QueueLoadRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> Promise<QueueLoadRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueLoadRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> QueueRemoveRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> Promise<QueueRemoveRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueRemoveRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> QueueReorderRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> Promise<QueueReorderRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueReorderRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> QueueUpdateRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> Promise<QueueUpdateRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: QueueUpdateRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> ResumeSessionRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> Promise<ResumeSessionRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: ResumeSessionRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> SeekRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> Promise<SeekRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SeekRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> StoreSessionResponseData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> Promise<StoreSessionResponseData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionResponseData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> SetCredentialsRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> Promise<SetCredentialsRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetCredentialsRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> SetPlaybackRateRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> Promise<SetPlaybackRateRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: SetPlaybackRateRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> VolumeRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> Promise<VolumeRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: VolumeRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> StoreSessionRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> Promise<StoreSessionRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: StoreSessionRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> UserActionRequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> Promise<UserActionRequestData>)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: UserActionRequestData) -> Nothing?)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: RequestData) -> RequestData)?)
+//    open fun setMessageInterceptor(type: MessageType, interceptor: ((messageData: RequestData) -> Promise<RequestData>)?)
+    open fun setMessageInterceptor(type: MessageType, interceptor: (RequestData) -> Unit)
+    open fun setMessageInterceptor(type: MessageType, interceptor: (LoadRequestData) -> LoadRequestData)
+
+    //    open fun setMessageInterceptor(type: MessageType, interceptor: (PreloadRequestData) -> PreloadRequestData)
     open fun setPlaybackConfig(playbackConfig: PlaybackConfig)
     open fun setPreferredPlaybackRate(preferredPlaybackRate: Number)
     open fun setPreferredTextLanguage(preferredTextLanguage: String)
@@ -263,7 +287,7 @@ external open class PlaybackConfig {
     open var licenseUrl: String
     open var manifestHandler: (manifest: String) -> String
     open var manifestRequestHandler: RequestHandler
-    open var protectionSystem: ContentProtection
+    open var protectionSystem: ContentProtection?
     open var segmentHandler: BinaryHandler
     open var segmentRequestHandler: RequestHandler
     open var segmentRequestRetryLimit: Number
@@ -293,14 +317,6 @@ external open class CastReceiverOptions {
     open var versionCode: Number
 }
 
-external object Framework {
-    var CastReceiverContext: CastReceiverContextStatic
-}
-
-external open class CastReceiverContextStatic() {
-    fun getInstance(): CastReceiverContext
-}
-
 external open class CastReceiverContext(params: Any) {
     open fun addCustomMessageListener(namespace: String, listener: EventHandler)
     open fun addEventListener(type: String, handler: EventHandler)
@@ -323,9 +339,13 @@ external open class CastReceiverContext(params: Any) {
     open fun sendFeedbackMessage(feedbackMessage: String)
     open fun setApplicationState(statusText: String)
     open fun setInactivityTimeout(maxInactivity: Number)
-    open fun setLoggerLevel(level: Int)
+    open fun setLoggerLevel(level: LoggerLevel)
     open fun start(options: CastReceiverOptions = definedExternally): CastReceiverContext
     open fun stop()
+
+    companion object {
+        fun getInstance(): CastReceiverContext
+    }
 }
 
 external open class AudioTracksManager(params: Any) {

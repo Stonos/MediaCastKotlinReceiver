@@ -1,8 +1,13 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS",
+    "EXTERNAL_DELEGATION"
+)
+@file:JsQualifier("cast.framework.messages")
 
 package cast
-
-import kotlin.js.*
 
 external enum class CaptionMimeType {
     CEA608 /* = 'text/cea608' */,
@@ -589,7 +594,7 @@ external open class MediaInformation {
     open var contentId: String
     open var contentType: String
     open var contentUrl: String
-    open var customData: Any
+    open var customData: dynamic
     open var duration: Number
     open var entity: String
     open var hlsSegmentFormat: HlsSegmentFormat
