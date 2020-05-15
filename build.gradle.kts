@@ -27,4 +27,7 @@ dependencies {
     implementation(npm("inline-style-prefixer"))
 }
 
-kotlin.target.browser { }
+kotlin.target {
+    browser {}
+    useCommonJs()
+}
