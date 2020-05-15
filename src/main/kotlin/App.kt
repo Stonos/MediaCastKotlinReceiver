@@ -90,6 +90,47 @@ class App : RComponent<RProps, AppState>() {
 
             loadRequestData
         }
+
+        player.addEventListener(PlayerEventType.PLAYER_LOAD_COMPLETE) { event: LoadEvent ->
+            log("[mediacast:events:PLAYER_LOAD_COMPLETE")
+            log(player.getStats())
+            log(player.getMediaInformation())
+        }
+
+        player.addEventListener(PlayerEventType.BITRATE_CHANGED) { event: BitrateChangedEvent ->
+            log("[mediacast:events:BITRATE_CHANGED -", event)
+            setState { stats = stats.copy(bitrate = event.totalBitrate.toInt()) }
+        }
+
+        player.addEventListener(PlayerEventType.PLAYING) { event: MediaElementEvent ->
+            log("[mediacast:events:PLAYING -", event)
+        }
+
+        player.addEventListener(PlayerEventType.PAUSE) { event: MediaElementEvent ->
+            log("[mediacast:events:PAUSE -", event)
+        }
+
+        player.addEventListener(PlayerEventType.SEEKING) { event: MediaElementEvent ->
+            log("[mediacast:events:SEEKING -", event)
+        }
+
+        player.addEventListener(PlayerEventType.BUFFERING) { event: MediaElementEvent ->
+            log("[mediacast:events:BUFFERING -", event)
+        }
+
+        player.addEventListener(PlayerEventType.TIME_UPDATE) { event: MediaElementEvent ->
+            log("[mediacast:events:TIME_UPDATE -", event)
+            setState { stats = stats.copy(currentMediaTime = event.currentMediaTime.toInt()) }
+        }
+
+        player.addEventListener(PlayerEventType.MEDIA_STATUS) { event: MediaStatusEvent ->
+            log("[mediacast:events:MEDIA_STATUS -", event)
+            setState { stats = stats.copy(state = event.mediaStatus.toString()) }
+        }
+
+        player.addEventListener(PlayerEventType.ALL) { event: MediaElementEvent ->
+            log("Player event:", event)
+        }
     }
 
     private fun log(vararg items: Any?) {

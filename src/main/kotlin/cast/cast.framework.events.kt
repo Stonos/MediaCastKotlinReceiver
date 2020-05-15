@@ -1,10 +1,16 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION")
-
+@file:Suppress(
+    "INTERFACE_WITH_SUPERCLASS",
+    "OVERRIDING_FINAL_MEMBER",
+    "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+    "CONFLICTING_OVERLOADS",
+    "EXTERNAL_DELEGATION"
+)
+@file:JsQualifier("cast.framework.events")
 package cast
 
-import kotlin.js.*
-import org.khronos.webgl.*
+import org.khronos.webgl.Uint8Array
 
+@JsName("EventType")
 external enum class PlayerEventType {
     ALL /* = '*' */,
     ABORT /* = 'ABORT' */,

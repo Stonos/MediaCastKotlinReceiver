@@ -109,11 +109,6 @@ external open class PlayerManager(params: Any = definedExternally) {
     open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: MediaFinishedEventHandler)
     open fun addEventListener(eventType: PlayerEventType, eventListener: LoadEventHandler)
     open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: LoadEventHandler)
-    open fun addEventListener(eventType: PlayerEventType, eventListener: LoadEventHandler)
-    open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: LoadEventHandler)
-    open fun addEventListener(eventType: PlayerEventType, eventListener: LoadEventHandler)
-    open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: LoadEventHandler)
-    open fun addEventListener(eventType: PlayerEventType, eventListener: LoadEventHandler)
     open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: LoadEventHandler)
     open fun addEventListener(eventType: PlayerEventType, eventListener: SegmentDownloadedEventHandler)
     open fun addEventListener(eventType: Array<PlayerEventType>, eventListener: SegmentDownloadedEventHandler)
@@ -141,6 +136,7 @@ external open class PlayerManager(params: Any = definedExternally) {
     open fun getPreferredPlaybackRate(): Number
     open fun getPreferredTextLanguage(): String
     open fun getQueueManager(): QueueManager
+    open fun getStats(): Any
     open fun getTextTracksManager(): TextTracksManager
     open fun load(loadRequest: LoadRequestData): Promise<Unit>
     open fun pause()
