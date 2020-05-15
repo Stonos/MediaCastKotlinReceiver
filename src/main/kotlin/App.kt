@@ -51,6 +51,10 @@ class App : RComponent<RProps, AppState>() {
 
         setPlayerEvents(player)
 
+        context.addCustomMessageListener("urn:x-cast:com.google.cast.mediacast") { event: Event ->
+            log("Custom message:", event)
+        }
+
         context.start()
     }
 
@@ -119,18 +123,18 @@ class App : RComponent<RProps, AppState>() {
         }
 
         player.addEventListener(PlayerEventType.TIME_UPDATE) { event: MediaElementEvent ->
-            log("[mediacast:events:TIME_UPDATE -", event)
-            setState { stats = stats.copy(currentMediaTime = event.currentMediaTime.toInt()) }
+//            log("[mediacast:events:TIME_UPDATE -", event)
+            setState { stats = stats.copy(currentMediaTime = event.currentMediaTime) }
         }
 
         player.addEventListener(PlayerEventType.MEDIA_STATUS) { event: MediaStatusEvent ->
             log("[mediacast:events:MEDIA_STATUS -", event)
-            setState { stats = stats.copy(state = event.mediaStatus.toString()) }
+            setState { stats = stats.copy(state = event.mediaStatus.playerState.toString()) }
         }
 
-        player.addEventListener(PlayerEventType.ALL) { event: MediaElementEvent ->
-            log("Player event:", event)
-        }
+//        player.addEventListener(PlayerEventType.ALL) { event: MediaElementEvent ->
+//            log("Player event:", event)
+//        }
     }
 
     private fun log(vararg items: Any?) {
@@ -146,6 +150,7 @@ class App : RComponent<RProps, AppState>() {
         setState {
             logs += loggedLine
         }
+        console.log(loggedLine)
     }
 
     companion object {
