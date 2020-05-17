@@ -85,6 +85,7 @@ class App : RComponent<RProps, AppState>() {
             }
 
             player.setMediaPlaybackInfoHandler { loadRequest, playbackConfig ->
+                playbackConfig.initialBandwidth = 20_000_000
                 playbackConfig.licenseUrl = licenseUrl
                 playbackConfig.protectionSystem = DRMS[drm]
                 log("[mediacast:playbackConfig - ", playbackConfig)
