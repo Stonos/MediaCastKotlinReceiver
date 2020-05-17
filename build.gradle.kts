@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.js") version "1.3.72"
+    id("org.jetbrains.kotlin.js") version "1.4-M1"
 }
 
 group = "org.example"
@@ -27,7 +27,10 @@ dependencies {
     implementation(npm("inline-style-prefixer"))
 }
 
-kotlin.target {
-    browser {}
-    useCommonJs()
+kotlin {
+    target {
+        useCommonJs()
+        produceExecutable()
+        browser {}
+    }
 }
