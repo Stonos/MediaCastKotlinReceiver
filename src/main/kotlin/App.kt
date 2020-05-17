@@ -51,8 +51,14 @@ class App : RComponent<RProps, AppState>() {
 
         setPlayerEvents(player)
 
-        context.addCustomMessageListener("urn:x-cast:com.google.cast.mediacast") { event: Event ->
+        context.addCustomMessageListener("urn:x-cast:com.google.cast.mediacast") { event: dynamic ->
             log("Custom message:", event)
+            val action = event.data.action as? String
+            console.log("action: $action")
+            if (action == "setDebugPanel") {
+                val message = event.data.message as? Boolean ?: true
+                setState { debugEnabled = message }
+            }
         }
 
         context.start()

@@ -80,6 +80,10 @@ class DebugPanel : RComponent<DebugPanelProps, RState>() {
         }
     }
 
+    override fun shouldComponentUpdate(nextProps: DebugPanelProps, nextState: RState): Boolean {
+        return props.debugEnabled || nextProps.debugEnabled
+    }
+
     override fun componentDidUpdate(prevProps: DebugPanelProps, prevState: RState, snapshot: Any) {
         logDiv.current?.scrollIntoView()
     }
