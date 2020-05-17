@@ -2,13 +2,14 @@ package components
 
 import kotlinx.css.*
 import kotlinx.css.properties.lh
+import org.w3c.dom.Element
 import react.*
 import react.dom.div
 import styled.css
 import styled.styledDiv
 import styled.styledSpan
 
-data class Stats(val bitrate: Int, val state: String, val currentMediaTime: Int)
+data class Stats(val bitrate: Int, val state: String, val currentMediaTime: Number)
 
 external interface DebugPanelProps : RProps {
     var logs: List<String>
@@ -17,6 +18,8 @@ external interface DebugPanelProps : RProps {
 }
 
 class DebugPanel : RComponent<DebugPanelProps, RState>() {
+    var logDiv = createRef<Element>()
+
     override fun RBuilder.render() {
         styledDiv {
             css {
@@ -55,6 +58,7 @@ class DebugPanel : RComponent<DebugPanelProps, RState>() {
 
                 props.logs.forEachIndexed { index, log ->
                     styledDiv {
+                        ref = logDiv
                         css {
                             borderBottom = "1px solid #fff3"
                             lineHeight = 1.4.em.lh
@@ -74,6 +78,10 @@ class DebugPanel : RComponent<DebugPanelProps, RState>() {
                 }
             }
         }
+    }
+
+    override fun componentDidUpdate(prevProps: DebugPanelProps, prevState: RState, snapshot: Any) {
+        logDiv.current?.scrollIntoView()
     }
 }
 
