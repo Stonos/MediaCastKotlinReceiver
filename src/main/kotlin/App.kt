@@ -6,12 +6,18 @@ import react.*
 import styled.css
 import styled.styledDiv
 
+private val DRMS = mapOf(
+    "widevine" to ContentProtection.WIDEVINE,
+    "playready" to ContentProtection.PLAYREADY
+)
+
 external interface AppState : RState {
     var logs: List<String>
     var stats: Stats
     var debugEnabled: Boolean
 }
 
+@JsExport
 class App : RComponent<RProps, AppState>() {
     override fun AppState.init() {
         logs = listOf()
@@ -158,12 +164,5 @@ class App : RComponent<RProps, AppState>() {
             logs += loggedLine
         }
         console.log(loggedLine)
-    }
-
-    companion object {
-        private val DRMS = mapOf(
-            "widevine" to ContentProtection.WIDEVINE,
-            "playready" to ContentProtection.PLAYREADY
-        )
     }
 }

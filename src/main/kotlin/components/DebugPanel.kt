@@ -17,6 +17,7 @@ external interface DebugPanelProps : RProps {
     var debugEnabled: Boolean
 }
 
+@JsExport
 class DebugPanel : RComponent<DebugPanelProps, RState>() {
     var logDiv = createRef<Element>()
 
